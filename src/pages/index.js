@@ -90,7 +90,7 @@ export default function Home() {
       </Head>
 
       <div className="flex flex-col h-screen bg-neutral-100">
-      <div className="flex flex-col rounded-3xl px-4 py-2.5 mt-8 mb-4 sm:px-4 sm:py-2.5 sm:mb-4 bg-white border border-1 border-neutral-200 
+      <div className="flex flex-col rounded-3xl px-4 py-1.5 mt-12 mb-0 sm:px-4 sm:py-1.5 sm:mb-0 bg-white border border-1 border-neutral-200 
       text-center outline outline-rounded-3xl outline-2 outline-offset-2 outline-[#a3e635] mx-auto w-48">
           <div className="font-semibold text-lg text-neutral-700" >
             <a

@@ -7,7 +7,7 @@ import { ChatBubble } from "./ChatBubble";
 export const Chat = ({ messages, loading, onSendMessage }) => {
   return (
     <>
-      <div className="flex flex-col rounded-3xl px-2 mt-8 sm:px-2 sm:mt-8 border 
+      <div className="flex flex-col rounded-3xl px-1 mt-2 sm:px-1 sm:mt-2 border 
       bg-white border-1 border-neutral-300 mx-auto">
         {/* messages 의 내용을 ChatBubble 컴포넌트를 통해 출력 */}
         {messages.map((message, index) => (
