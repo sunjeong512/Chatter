@@ -60,7 +60,7 @@ export const ChatInput = ({ onSendMessage }) => {
       />
 
       <button onClick={() => handleSend()}>
-        <IconArrowUp className="animate-pulse absolute right-3 bottom-3 h-8 w-8 hover:cursor-pointer rounded-full p-1 bg-[#a3e635] text-white hover:opacity-60" />
+        <IconArrowUp className="animate-bouncy absolute right-3 bottom-3 h-8 w-8 hover:cursor-pointer rounded-full p-1 bg-[#a3e635] text-white hover:opacity-60" />
       </button>
     </div>
   );

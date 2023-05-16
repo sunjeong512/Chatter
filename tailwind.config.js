@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        'bouncy':{
+          '0%, 100%': {transform: 'translateY(-13%)'},
+          '50%' : {transform: 'translateY(0)'}
+          }
+        },
+      animation: {
+        'bouncy':'bouncy 1s infinite'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

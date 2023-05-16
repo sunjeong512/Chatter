@@ -90,7 +90,8 @@ export default function Home() {
       </Head>
 
       <div className="flex flex-col h-screen bg-neutral-100">
-      <div className="flex flex-col mt-12 ml-auto md:mr-auto rounded-2xl w-64 h-10 pt-1 bg-white border border-neutral-300 text-center outline outline-2 outline-offset-2 outline-[#a3e635]">
+      <div className="flex flex-col rounded-3xl mt-8 px-1 sm:p-2 bg-white border border-1 border-neutral-200 
+      text-center outline outline-2 outline-offset-2 outline-[#a3e635] mx-auto w-1/3">
           <div className="font-semibold text-lg text-neutral-700" >
             <a
               className="flex-initial text-align:center hover:opacity-50"
