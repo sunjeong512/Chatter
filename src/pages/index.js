@@ -90,20 +90,20 @@ export default function Home() {
       </Head>
 
       <div className="flex flex-col h-screen bg-neutral-100">
-      <div className="flex flex-col rounded-3xl mt-8 px-1 sm:p-2 bg-white border border-1 border-neutral-200 
-      text-center outline outline-2 outline-offset-2 outline-[#a3e635] mx-auto w-1/3">
+      <div className="flex flex-col rounded-3xl px-4 py-2.5 mt-8 mb-4 sm:px-4 sm:py-2.5 sm:mb-4 bg-white border border-1 border-neutral-200 
+      text-center outline outline-rounded-3xl outline-2 outline-offset-2 outline-[#a3e635] mx-auto w-48">
           <div className="font-semibold text-lg text-neutral-700" >
             <a
               className="flex-initial text-align:center hover:opacity-50"
               href="https://code-scaffold.vercel.app"
             >
-              서울대학교 222동 1004호
+              486동 1004호
             </a>
           </div>
         </div>
 
-        <div className="flex-1 overflow-auto sm:px-10 pb-4 sm:pb-10">
-          <div className="max-w-[800px] mx-auto mt-4 sm:mt-12">
+        <div className="flex-1 sm:px-16 pb-4 sm:pb-4 px-4 sm:px-4">
+          <div className="max-w-[800px] mx-auto mt-12 sm:mt-12">
             {/*
               메인 채팅 컴포넌트
               messages: 메시지 목록
