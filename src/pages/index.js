@@ -72,7 +72,9 @@ export default function Home() {
 
   // 메시지 목록이 업데이트 될 때마다 맨 아래로 스크롤
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 1) {
+      scrollToBottom();
+    }
   }, [messages]);
 
   // 컴포넌트가 처음 렌더링 될 때 메시지 목록을 초기화
@@ -91,7 +93,7 @@ export default function Home() {
 
       <div className="flex flex-col h-screen bg-neutral-100">
       <div className="flex flex-col rounded-3xl px-4 py-1.5 mt-12 mb-0 sm:px-4 sm:py-1.5 sm:mb-0 bg-white border border-1 border-neutral-200 
-      text-center outline outline-rounded-3xl outline-2 outline-offset-2 outline-[#a3e635] mx-auto w-48">
+      text-center ring-offset-2 ring-2 ring-[#a3e635] mx-auto w-48">
           <div className="font-semibold text-lg text-neutral-700" >
             <a
               className="flex-initial text-align:center hover:opacity-50"
