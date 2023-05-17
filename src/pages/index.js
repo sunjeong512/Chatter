@@ -11,15 +11,13 @@ import {
   updateDoc,
   deleteDoc,
   orderBy,
-  where,
+  where
 } from "firebase/firestore";
 
-import { IconAdFilled } from "@tabler/icons-react";
-import { Input } from "postcss";
-
-
 export default function Home() {
-  const chatCollection = collection(db,"chat");
+  
+  const chatCollection = collection(db, "chat");
+
   const [messages, setMessages] = useState([]);
   // 메시지를 전송 중인지 여부를 저장하는 상태
   const [loading, setLoading] = useState(false);
@@ -27,6 +25,7 @@ export default function Home() {
   const messagesEndRef = useRef(null);
 
   const getChats = async () => {
+    // Firestore 쿼리를 만듭니다.
     const q = query(chatCollection, orderBy("datetime", "asc"));
     const results = await getDocs(q)
     console.log(results)
@@ -34,7 +33,7 @@ export default function Home() {
     results.docs.forEach((doc) => {
       newChats.push({id: doc.id, ...doc.data()})
     })
-
+    
     setMessages(newChats)
 
   }
@@ -47,26 +46,26 @@ export default function Home() {
   // 메시지를 전송하는 함수
   const handleSend = async (message) => {
     // message 를 받아 메시지 목록에 추가
+    // message 형태 = { role: "user", content: string }
+    // ChatInput.js 26번째 줄 참고
     const datetimeUser = new Date().toISOString()
     const docRefUser = await addDoc(chatCollection, {
       role: message.role,
       content: message.content,
       datetime: datetimeUser
     })
-
     let updatedMessages = [...messages, { id: docRefUser.id, role: message.role, content: message.content, datetime: datetimeUser }];
-
-
-    // message 형태 = { role: "user", content: string }
-    // ChatInput.js 26번째 줄 참고
+    
     // console.log(updatedMessages);
-
     // console.log(updatedMessages.slice(-6));
+
+    
     setMessages(updatedMessages);
 
     updatedMessages = updatedMessages.map((message) => {
       return {role: message.role, content: message.content}
     })
+    
     // 메시지 전송 중임을 표시
     setLoading(true);
 
@@ -99,14 +98,14 @@ export default function Home() {
     setLoading(false);
 
     const datetimeAssistant = new Date().toISOString();
-    const docRefAssisistant = await addDoc(chatCollection, {
-      role: message.role,
-      content: message.content,
+    const docRefAssistant = await addDoc(chatCollection, {
+      role: result.role,
+      content: result.content,
       datetime: datetimeAssistant
     });
 
-    setMessages((messages) => 
-    [...messages, { id: docRefAssisistant.id, role: result.role, content: result.content, datetime: datetimeAssistant}]);
+    setMessages((messages) =>
+      [...messages, { id: docRefAssistant.id, role: result.role, content: result.content, datetime: datetimeAssistant}]);
   };
 
   // 메시지 목록을 초기화하는 함수
@@ -117,15 +116,13 @@ export default function Home() {
       deleteDoc(chatDoc)
     })
 
-
     const datetime = new Date().toISOString();
     const docRef = await addDoc(chatCollection, {
       role: "assistant",
       content: "자네 내 연구실에는 무슨 일인가?",
-      datetime: datetime,
+      datetime: datetime
     })
-
-
+    
     setMessages([
       {
         id: docRef.id,
@@ -144,11 +141,12 @@ export default function Home() {
       scrollToBottom();
     }
   }, [messages]);
-
+  
   // 컴포넌트가 처음 렌더링 될 때 메시지 목록을 초기화
   useEffect(() => {
     getChats();
   }, []);
+    
 
   return (
     <>
