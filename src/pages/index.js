@@ -22,6 +22,9 @@ export default function Home() {
   // 메시지를 전송 중인지 여부를 저장하는 상태
   const [loading, setLoading] = useState(false);
 
+  const [previousMessages, setPreviousMessages] = useState([]);
+
+
   const messagesEndRef = useRef(null);
 
   const getChats = async () => {
@@ -32,11 +35,10 @@ export default function Home() {
     const newChats = []
     results.docs.forEach((doc) => {
       newChats.push({id: doc.id, ...doc.data()})
-    })
+    });
+    setMessages(newChats);
     
-    setMessages(newChats)
-
-  }
+  };
 
   // 메시지 목록을 끝으로 스크롤
   const scrollToBottom = () => {
@@ -114,15 +116,16 @@ export default function Home() {
     messages.forEach((message) => {
       const chatDoc = doc(chatCollection, message.id)
       deleteDoc(chatDoc)
-    })
-
+    });
+  
+    // 초기 대화 메시지 설정
     const datetime = new Date().toISOString();
     const docRef = await addDoc(chatCollection, {
       role: "assistant",
       content: "자네 내 연구실에는 무슨 일인가?",
       datetime: datetime
-    })
-    
+    });
+  
     setMessages([
       {
         id: docRef.id,
@@ -131,9 +134,8 @@ export default function Home() {
         datetime: datetime,
       },
     ]);
-
-
   };
+
 
   // 메시지 목록이 업데이트 될 때마다 맨 아래로 스크롤
   useEffect(() => {
@@ -183,6 +185,8 @@ export default function Home() {
               loading={loading}
               onSendMessage={handleSend}
               handleReset={handleReset}
+              setMessages={setMessages}
+              previousMessages={previousMessages}
             />
             {/* 메시지 목록의 끝으로 스크롤하기 위해 참조하는 엘리먼트 */}
             <div ref={messagesEndRef} />
