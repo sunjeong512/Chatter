@@ -1,6 +1,20 @@
 import { Chat } from "@/components/Chat";
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
+import { db } from "@/firebase";
+import {
+  collection,
+  query,
+  doc,
+  getDocs,
+  addDoc,
+  updateDoc,
+} from "firebase/firestore";
+
+import { IconAdFilled } from "@tabler/icons-react";
+import { Input } from "postcss";
+
+const messageCollection = collection(db,"chat");
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -17,6 +31,13 @@ export default function Home() {
   // 메시지를 전송하는 함수
   const handleSend = async (message) => {
     // message 를 받아 메시지 목록에 추가
+    const docRef = await addDoc(messageCollection, {
+      role: message.role,
+      content: message.content,
+      completed: false,
+    });
+
+
     // message 형태 = { role: "user", content: string }
     // ChatInput.js 26번째 줄 참고
     const updatedMessages = [...messages, message];
@@ -52,7 +73,12 @@ export default function Home() {
       return;
     }
 
-    // console.log(result);
+    console.log(result);
+    const docRev = await addDoc(messageCollection, {
+      role: message.role,
+      content: message.content,
+      completed: false,
+    });
 
     // 로딩 상태를 해제하고, 메시지 목록에 응답을 추가
     setLoading(false);
