@@ -109,10 +109,14 @@ export default function Home() {
     setMessages((messages) =>
       [...messages, { id: docRefAssistant.id, role: result.role, content: result.content, datetime: datetimeAssistant}]);
   };
+  
 
   // 메시지 목록을 초기화하는 함수
   // 처음 시작할 메시지를 설정
   const handleReset = async () => {
+
+    setPreviousMessages(messages);
+
     messages.forEach((message) => {
       const chatDoc = doc(chatCollection, message.id)
       deleteDoc(chatDoc)

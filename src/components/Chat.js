@@ -5,9 +5,10 @@ import { ChatBubble } from "./ChatBubble";
 
 
 export const Chat = ({ messages, loading, onSendMessage, handleReset, setMessages, previousMessages }) => {
-  const handleCancelReset = () => {
+  const ResetCancel = () => {
     setMessages(previousMessages);
   };
+
 
   return (
     <>
@@ -30,6 +31,10 @@ export const Chat = ({ messages, loading, onSendMessage, handleReset, setMessage
       <button onClick={handleReset}
         className="rounded-3xl ml-2 mt-3 py-1.5 px-6 text-white bg-[#84cc16]/80 hover:animate-pulse">
           초기화</button>
+
+      <button onClick={ResetCancel}
+        className="rounded-3xl ml-2 mt-3 py-1.5 px-6 text-[#84cc16]/80 bg-white border border-[#84cc16]/80 hover:animate-pulse">
+          초기화 취소</button> 
 
     </>
   );
