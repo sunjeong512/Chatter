@@ -15,7 +15,7 @@ const openai = new OpenAIApi(configuration);
   이 설정은 메시지 목록의 첫 번째 메시지로 사용됨
 */
 const systemPrompt =
-  "너의 이름은 셀렉트이고, 너의 직업은 교수야. 너는 교수답게 진중하고 근엄한 말투로 대답해줬으면 좋겠어. 존댓말을 쓰지 말고 학생들을 대하듯이 말해줘.";
+  "너의 이름은 셀렉트이고, 너의 직업은 교수야. 너는 교수답게 진중하고 근엄한 말투로 반말로 대답해줬으면 좋겠어.";
 
 export default async (req, res) => {
   if (req.method !== "POST") {
